@@ -1,5 +1,6 @@
 import React from 'react'
 import App, { Link } from './App'
+import { TodoList } from './TodoList'
 import { configure, shallow, mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 
@@ -52,12 +53,29 @@ describe('<App/> shallow rendering', () => {
   })
 })
 
-describe('<App/> mount rendering', () => {
-  it('should contain p element', () => {
-    const wrapper = mount(<App/>)
-    expect(wrapper.find('p').exists()).toBe(true)
-    wrapper.unmount()
-  })
+describe('<TodoList />', () => {
+   it('should call addTodo Redux action create with button click', () => {
+     const props = {
+       addTodo: jest.fn(),
+       todos: [],
+     }
+
+     const wrapper = shallow(<TodoList {...props} />)
+     wrapper.find('input').simulate('change', { currentTarget: { value: 'Buy Groceries' } })
+     wrapper.find('.todo--button').simulate('click')
+     expect(props.addTodo).toHaveBeenCalledWith({ text: 'Buy Groceries' })
+   })
+
+   it('should removeTodo Redux AC on li click', () => {
+      const props = {
+        removeTodo: jest.fn(),
+        todos: [{ text: 'hi' }, { text: 'hello' }],  
+      }
+
+      const wrapper = shallow(<TodoList {...props} />)
+      wrapper.find('li').at(0).simulate('click')
+      expect(props.removeTodo).toHaveBeenCalledWith(0)
+   })
 })
 
 describe('<Link/>', () => {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TodoList from './TodoList'
 
 export default class App extends Component {
   state = { on: false, title: '', active: true };
@@ -23,6 +24,7 @@ export default class App extends Component {
         <button type="button" onClick={() => this.setState({ on: true })}>
           Click
         </button>
+        <TodoList/>
       </div>
     );
   }
