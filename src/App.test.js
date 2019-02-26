@@ -21,7 +21,7 @@ describe('<App/> shallow rendering', () => {
   })
 
   it('should change title when change input', () => {
-    const wrapper = shallow(<App/>)
+    const wrapper = shallow(<App/>, { disableLifecycleMethods: true })
     const input = wrapper.find('input')
     const value = 'Hello'
     expect(wrapper.find('h1').text()).toBe('')
@@ -43,6 +43,12 @@ describe('<App/> shallow rendering', () => {
     const wrapper = shallow(<App/>)
     expect(App.prototype.componentDidMount.mock.calls.length).toBe(1)
     expect(wrapper.find('h1').text()).toBe('Hi')
+  })
+
+  it('handleStrings function returns correctly', () => {
+    const wrapper = shallow(<App/>)
+    const trueReturn = wrapper.instance().handleString('Hello World')
+    expect(trueReturn).toBe(true)
   })
 })
 

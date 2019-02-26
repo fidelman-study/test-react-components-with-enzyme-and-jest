@@ -7,6 +7,10 @@ export default class App extends Component {
     this.setState({ title: 'Hi' })
   }
 
+  handleString(_str) {
+    return true
+  }
+
   render() {
     return (
       <div className={this.state.active ? 'blue' : 'red'}>
