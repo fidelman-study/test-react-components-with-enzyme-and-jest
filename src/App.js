@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 
 export default class App extends Component {
-  state = { on: false, title: '' }
+  state = { on: false, title: '', active: true };
   render() {
     return (
-      <div>
+      <div className={this.state.active ? 'blue' : 'red'}>
         <h1>{this.state.title}</h1>
-        <input value={this.state.title} onChange={e => this.setState({ title: e.target.value })} />
-        <p>
-          {this.state.on ? 'Yes' : 'No'}
-        </p>
-        <button type="button" onClick={() => this.setState({ on: true })}>Click</button>
+        <input
+          value={this.state.title}
+          onChange={e => this.setState({ title: e.target.value })}
+        />
+        <p>{this.state.on ? 'Yes' : 'No'}</p>
+        <button type="button" onClick={() => this.setState({ on: true })}>
+          Click
+        </button>
       </div>
     );
   }
