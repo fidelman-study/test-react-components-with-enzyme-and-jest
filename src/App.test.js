@@ -6,7 +6,8 @@ import Adapter from 'enzyme-adapter-react-16'
 configure({ adapter: new Adapter() })
 
 describe('<App/>', () => {
-  it('should render App', () => {
-    const wrapper = shallow(<App/>)
+  const wrapper = shallow(<App/>)
+  it('should contain p element', () => {
+    expect(wrapper.find('p').exists()).toBe(true)
   })
 })
