@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 
 export default class App extends Component {
+  state = { on: false, title: '' }
   render() {
     return (
       <div>
-        <h1>Hello</h1>
+        <h1>{this.state.title}</h1>
+        <input value={this.state.title} onChange={e => this.setState({ title: e.target.value })} />
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita
-          inventore corporis maxime delectus at labore vel culpa iste quas
-          tenetur iusto excepturi ad ipsa temporibus, recusandae aspernatur
-          corrupti quo molestias.
+          {this.state.on ? 'Yes' : 'No'}
         </p>
+        <button type="button" onClick={() => this.setState({ on: true })}>Click</button>
       </div>
     );
   }

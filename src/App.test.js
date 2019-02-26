@@ -10,6 +10,24 @@ describe('<App/> shallow rendering', () => {
     const wrapper = shallow(<App/>)
     expect(wrapper.find('p').exists()).toBe(true)
   })
+
+  it('on button click changes p text', () => {
+    const wrapper = shallow(<App/>)
+    const button = wrapper.find('button')
+    expect(wrapper.find('p').text()).toBe('No')
+
+    button.simulate('click')
+    expect(wrapper.find('p').text()).toBe('Yes')
+  })
+
+  it('should change title when change input', () => {
+    const wrapper = shallow(<App/>)
+    const input = wrapper.find('input')
+    const value = 'Hello'
+    expect(wrapper.find('h1').text()).toBe('')
+    input.simulate('change', { target: { value } })
+    expect(wrapper.find('h1').text()).toBe(value)
+  })
 })
 
 describe('<App/> mount rendering', () => {
