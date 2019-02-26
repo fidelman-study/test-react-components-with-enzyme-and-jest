@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 
 export default class App extends Component {
   state = { on: false, title: '', active: true };
+
+  componentDidMount() {
+    this.setState({ title: 'Hi' })
+  }
+
   render() {
     return (
       <div className={this.state.active ? 'blue' : 'red'}>

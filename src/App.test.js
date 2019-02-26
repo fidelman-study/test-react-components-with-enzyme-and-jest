@@ -37,6 +37,13 @@ describe('<App/> shallow rendering', () => {
     expect(wrapper.find('.blue').length).toBe(0)
     expect(wrapper.find('.red').length).toBe(1)
   })
+
+  it('should call cdm', () => {
+    jest.spyOn(App.prototype, 'componentDidMount')
+    const wrapper = shallow(<App/>)
+    expect(App.prototype.componentDidMount.mock.calls.length).toBe(1)
+    expect(wrapper.find('h1').text()).toBe('Hi')
+  })
 })
 
 describe('<App/> mount rendering', () => {
